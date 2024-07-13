@@ -1,14 +1,12 @@
 import { Router } from 'express';
-const mainRoute = Router();
+import mainRoute from './main';
+import testRoute from './test';
+  
+const routes = Router();
 
-mainRoute.get('/', (req, res) => {
-    res.send('main api route works');
-});
+routes.use(testRoute);
+routes.use(mainRoute);
 
-// optionally add more routes or create them in other files in this folder and import here
-
-const routes = [
-    mainRoute
-];
 
 export default routes;
+
