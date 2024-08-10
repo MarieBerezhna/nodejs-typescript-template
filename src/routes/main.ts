@@ -7,9 +7,12 @@ mainRoute.get('/', (req, res) => {
     res.send('main api route works');
 });
 
-mainRoute.post('/upload', upload.single('file'), (req, res) => {
+mainRoute.post('/upload', upload.array('files'), (req, res) => {
   // Handle the uploaded file
   res.json({ message: 'File uploaded successfully!' });
 });
 
-  export default mainRoute;
+
+
+
+export default mainRoute;

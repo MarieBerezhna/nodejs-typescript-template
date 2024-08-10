@@ -6,6 +6,22 @@ import bodyParser from 'body-parser';
 
 const app = express();
 
+const session = require('express-session');
+
+const sess = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+  cookie: { secure: false }
+}
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess))
 app.use(cors());
 // body-parser
 app.use(bodyParser.json());
@@ -17,7 +33,9 @@ app.use('/src/uploads', express.static('uploads'));
 // Set the port number for the server
 const port = 3000;
 
-app.use((req, res, next) => {
+app.use((req:any, res, next) => {
+
+  console.log(req.sessionID);
   next()
 })
 
