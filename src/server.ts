@@ -12,7 +12,6 @@ const sess = {
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  // cookie: { secure: true }
   cookie: { secure: false }
 }
 
@@ -34,8 +33,6 @@ app.use('/src/uploads', express.static('uploads'));
 const port = 3000;
 
 app.use((req:any, res, next) => {
-
-  console.log(req.sessionID);
   next()
 })
 

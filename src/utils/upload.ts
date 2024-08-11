@@ -1,5 +1,4 @@
 import multer, { diskStorage } from 'multer';
-import path from 'path';
 import fs from 'fs';
 
 // Set up storage for uploaded files
