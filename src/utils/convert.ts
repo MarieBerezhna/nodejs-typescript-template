@@ -1,9 +1,6 @@
 import sharp from 'sharp';
 
-const convert = async function (inputPath: string, outpuDir: string, ext?: string) {
-
-    try {
-        const outputPath =  `${outpuDir}newfile.webp`;
+const convert = async function (inputPath: string, outputPath: string) {
 
         try {
             await sharp(inputPath)
@@ -12,11 +9,6 @@ const convert = async function (inputPath: string, outpuDir: string, ext?: strin
         } catch (error) {
             console.error(`Error converting file:`, error);
         }
-        
-    } catch (err) {
-
-        console.log(`Error converting file: ${err}`);
-    }
 
 }
 
