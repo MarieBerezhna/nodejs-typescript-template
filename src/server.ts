@@ -1,9 +1,11 @@
-// Import the 'express' module
 import express from 'express';
 import cors from 'cors';
 import routes from './routes';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpecs } from '../swagger';
+
 
 const app = express();
 
@@ -33,6 +35,9 @@ const port = 3000;
 app.use((req:any, res, next) => {
   next()
 })
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 app.use('/', routes);
 
