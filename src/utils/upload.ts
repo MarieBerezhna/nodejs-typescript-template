@@ -5,6 +5,8 @@ import fs from 'fs';
 const storage = diskStorage({
     destination: (req: any, _file: any, cb: (arg0: null, arg1: string) => void) => {
         const dir = `src/users/${req.sessionID}/uploads`;
+
+        console.log(dir);
         if (!fs.existsSync(dir))  fs.mkdirSync(dir);
         cb(null, dir);
     },

@@ -3,10 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import routes from './routes';
 import bodyParser from 'body-parser';
+import session from 'express-session';
 
 const app = express();
-
-const session = require('express-session');
 
 const sess = {
   secret: 'keyboard cat',
@@ -15,7 +14,7 @@ const sess = {
   cookie: { secure: false }
 }
 
-if (app.get('env') === 'production') {
+if (app.get('env') !== 'develoopment') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
@@ -26,8 +25,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-app.use('/src/uploads', express.static('uploads'));
+app.use('/src/users', express.static('src/users'));
 
 // Set the port number for the server
 const port = 3000;

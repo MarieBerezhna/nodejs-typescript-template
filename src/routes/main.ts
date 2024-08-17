@@ -2,6 +2,7 @@ import { Router } from 'express';
 import upload from '../utils/upload';
 import fs from 'fs';
 import convert from '../utils/convert';
+import { createUserSpace } from '../utils/generic';
 
 const mainRoute = Router();
 
@@ -11,7 +12,12 @@ mainRoute.get('/', (req:any, res) => {
     res.send('main api route works');
 });
 
-mainRoute.post('/upload', upload.array('files'), (req, res) => {
+mainRoute.post('/upload', upload.array('files'), (req:any, res) => {
+
+  createUserSpace(req.sessionID);
+
+  console.log(req.body, req.file, req.files, req.data);
+  
   // Handle the uploaded file
   res.json({ message: 'File uploaded successfully!' });
 });
